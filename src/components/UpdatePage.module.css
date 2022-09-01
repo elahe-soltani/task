@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding:20px ;
+}
+label{
+    padding: 90px 50px;
+    margin: 20px 50px;
+    font-size: 20px;
+}
+.container div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container div textarea {
+    padding: 30px;
+    margin: 50px;
+}
+.container button{
+    padding: 10px 20px;
+    color: white;
+    background-color: #2b2eff;
+    border-radius: 8px;
+}

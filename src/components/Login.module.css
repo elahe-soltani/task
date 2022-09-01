@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:90px;
+    padding: 30px;
+    
+}
+.container form{
+    border: 2px solid blue;
+    padding: 60px;
+    border-radius: 5px;
+}
+.container form input{
+    padding: 5px 10px;
+    margin: 10px;
+}
+.container form button{
+    padding: 10px 30px;
+    background-color: rgb(35, 35, 141);
+    color: white;
+    border-radius: 10px;
+    margin-left: 80px;
+    margin-top:10px ;
+}
