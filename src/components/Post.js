@@ -9,42 +9,46 @@ import "./post.css";
 
 const Post = () => {
     const params=useParams();
+   const [post , setPost] = useState([]);
 
     const dispatch=useDispatch();
     const postData=useSelector(state=>state.postState);
     useEffect(()=>{
         dispatch(fetchPost())
     },[])
-
-    const [post , setPost] = useState([]);
     const [counter , setCounter] = useState(0);
     const [search , setSearch] = useState("");
     const [pageNumber,setPageNumber]=useState(0);
-    
     const postPerPage=10;
-    const pagesVisited=pageNumber*postPerPage; 
-    const displayPosts=post
-    .slice(pagesVisited,pagesVisited+postPerPage)
-    .map(post=>
-        <Card
-        key={post.id} 
-        id={post.id}
-        title={post.title}
-        body={post.body}
-        />
-     )
+    const pagesVisited=pageNumber*postPerPage;
 
-
+    const data=postData.posts;
+    const displayPosts=(data)=>{
+        return (
+            data.slice(pagesVisited,pagesVisited+postPerPage)
+            .map(post=>
+                <Card
+                key={post.id} 
+                id={post.id}
+                title={post.title}
+                body={post.body}
+                />
+             )
+        )
+   
+    }
+     
       const pageCount=Math.ceil(postData.posts.length / postPerPage);
       const changePage =({selected}) =>{
         setPageNumber(selected);
       }
       const searchHandeler=() =>{
          setCounter(prevCounter => prevCounter+1)
-         const newPost=postData.posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase())); 
-         setPost(newPost);
+         let searchPost=postData.posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase())); 
+        setPost(searchPost);
+       
      }
-     
+ 
     return (
         <div className='container'>
             <Navbar id={params.id} counter={counter} />
@@ -60,7 +64,8 @@ const Post = () => {
             :
              postData.error ?
              <p>something wrong</p> :
-             displayPosts
+             post.length ? displayPosts(post):
+             displayPosts(data)
             } 
             
 
